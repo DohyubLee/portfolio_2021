@@ -4,9 +4,11 @@ import "./Header.scss";
 
 const Header = () => {
   return (
-    <header className="App-header">
-      <Link to="/">index</Link>
-      <Link to="/popular">popular</Link>
+    <header>
+      <div className="App-header">
+        <Link to="/">index</Link>
+        <Link to="/popular">popular</Link>
+      </div>
     </header>
   );
 };

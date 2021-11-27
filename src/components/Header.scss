@@ -1,4 +1,36 @@
+header {
+}
+
 .App-header {
-  height: 100px;
+  height: 68px;
   background-color: aqua;
+  width: 100%;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media screen and (min-width: 576px) {
+  .App-header {
+    max-width: 540px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .App-header {
+    max-width: 720px;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .App-header {
+    max-width: 960px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .App-header {
+    max-width: 1170px;
+  }
 }
