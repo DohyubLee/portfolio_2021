@@ -1,14 +1,54 @@
+// @import '/src/App.scss';
+$main-back-color: #141414;
+
 header {
+  padding: 10px 0;
+  position: fixed;
+  width: 100%;
+  top: 0px;
+
+  .App-header {
+    height: 58px;
+    background-color: transparent;
+    width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+
+    .left-wrap {
+      display: flex;
+      align-items: center;
+      width: 350px;
+      i {
+        margin-right: 25px;
+        color: #e50914;
+      }
+      ul {
+        display: flex;
+        font-weight: bold;
+        width: 100%;
+        justify-content: space-between;
+        .nav-tab {
+          color: #b3b3b3;
+        }
+        .active {
+          color: #fff;
+        }
+      }
+    }
+
+    .right-wrap {
+      flex-grow: 1;
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
 }
 
-.App-header {
-  height: 68px;
-  background-color: aqua;
-  width: 100%;
-  padding-left: 15px;
-  padding-right: 15px;
-  margin-left: auto;
-  margin-right: auto;
+.header-back-color {
+  background-color: rgba(20, 20, 20, 1);
 }
 
 @media screen and (min-width: 576px) {
