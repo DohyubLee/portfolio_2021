@@ -1,5 +1,6 @@
 // @import '/src/App.scss';
 $main-back-color: #141414;
+$nav-basic-color: #b3b3b3;
 
 header {
   padding: 10px 0;
@@ -31,7 +32,7 @@ header {
         width: 100%;
         justify-content: space-between;
         .nav-tab {
-          color: #b3b3b3;
+          color: $nav-basic-color;
         }
         .active {
           color: #fff;
@@ -43,6 +44,71 @@ header {
       flex-grow: 1;
       display: flex;
       justify-content: flex-end;
+      align-items: center;
+
+      .search-wrap {
+        width: 180px;
+        overflow: hidden;
+        position: relative;
+        height: 28px;
+
+        .search-bar {
+          display: flex;
+          background-color: transparent;
+          border: 1px solid transparent;
+          position: absolute;
+          left: 140px;
+          transition: all 1s;
+
+          .toggle-btn {
+            border: none;
+            padding: 0;
+            background-color: transparent;
+            cursor: pointer;
+            .fa-search {
+              display: block;
+              font-size: 19px;
+              color: $nav-basic-color;
+            }
+            .fa-search:hover {
+              color: #fff;
+            }
+          }
+
+          form {
+            input {
+              display: block;
+              border: none;
+              padding: 5px 2px 5px 3px;
+              width: 100%;
+              background-color: transparent;
+              caret-color: #fff;
+              color: #fff;
+            }
+            input:focus {
+              outline: none;
+            }
+          }
+        }
+
+        .active {
+          background-color: $main-back-color;
+          border: 1px solid red;
+          left: 0px;
+        }
+      }
+
+      .my-list {
+        margin-left: 12px;
+
+        .fa-heart {
+          color: $nav-basic-color;
+        }
+
+        .fa-heart:hover {
+          color: #fff;
+        }
+      }
     }
   }
 }

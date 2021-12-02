@@ -8,7 +8,8 @@ body {
 
 div,
 header,
-nav {
+nav,
+input {
   box-sizing: border-box;
 }
 
@@ -22,3 +23,22 @@ a {
   /* display: inline-block; */
   text-decoration: none;
 }
+
+button {
+  display: block;
+}
+
+/* input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+input::-ms-clear {
+  display: none;
+}
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-out-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+} */

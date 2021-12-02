@@ -1,9 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import './Header.scss';
 
 const Header = () => {
   const [navActive, setNavActive] = useState(false);
+  const [isSearchBar, setIsSearchBar] = useState(false);
+  const inputRef = useRef();
+
+  useEffect(() => {
+    if (isSearchBar === true) {
+      inputRef.current.focus();
+    }
+  }, [isSearchBar]);
 
   const changeNavBackColor = () => {
     if (window.scrollY > 0) {
@@ -13,13 +21,27 @@ const Header = () => {
     }
   };
 
+  const OpenSearchBar = () => {
+    setIsSearchBar(!isSearchBar);
+  };
+
+  const OnFocus = () => {
+    console.log('OnFocus');
+  };
+
+  const OnBlur = () => {
+    console.log('OnBlur');
+    setIsSearchBar(false);
+  };
+
   window.addEventListener('scroll', changeNavBackColor);
+
   return (
     <header className={navActive ? 'header-back-color' : ''}>
       <nav className="App-header">
         <div className="left-wrap">
           <Link to="/">
-            <i class="fas fa-video fa-3x"></i>
+            <i className="fas fa-video fa-3x"></i>
           </Link>
           <ul>
             <li>
@@ -49,8 +71,19 @@ const Header = () => {
           </ul>
         </div>
         <div className="right-wrap">
-          <button>검색</button>
-          <Link to="/my-list">my-list</Link>
+          <div className="search-wrap">
+            <div className={isSearchBar ? 'search-bar active' : 'search-bar'}>
+              <button onClick={OpenSearchBar} className="toggle-btn">
+                <i className="fas fa-search"></i>
+              </button>
+              <form>
+                <input onFocus={OnFocus} onBlur={OnBlur} ref={inputRef} />
+              </form>
+            </div>
+          </div>
+          <Link to="/my-list" className="my-list">
+            <i className="fas fa-heart fa-lg"></i>
+          </Link>
         </div>
       </nav>
     </header>
