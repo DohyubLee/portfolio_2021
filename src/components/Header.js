@@ -122,10 +122,10 @@ const Header = () => {
             <i className="fas fa-heart fa-lg"></i>
           </Link>
         </div>
-        {isTabletOrMobile && openMobNav && (
+        {isTabletOrMobile && (
           <div ref={mobNavRef} className="mob-nav-wrap">
             <ul>
-              <li>
+              <li className={openMobNav ? 'mob-nav-active' : ''}>
                 <NavLink
                   to="/now-playing"
                   className={({ isActive }) => (isActive ? 'active' : 'nav-tab')}
@@ -133,7 +133,7 @@ const Header = () => {
                   now-playing
                 </NavLink>
               </li>
-              <li>
+              <li className={openMobNav ? 'mob-nav-active' : ''}>
                 <NavLink
                   to="/popular"
                   className={({ isActive }) => (isActive ? 'active' : 'nav-tab')}
@@ -141,7 +141,7 @@ const Header = () => {
                   popular
                 </NavLink>
               </li>
-              <li>
+              <li className={openMobNav ? 'mob-nav-active' : ''}>
                 <NavLink
                   to="/upcoming"
                   className={({ isActive }) => (isActive ? 'active' : 'nav-tab')}
