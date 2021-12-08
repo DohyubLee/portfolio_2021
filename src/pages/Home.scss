@@ -66,6 +66,13 @@
         width: 60vw;
         position: absolute;
         bottom: 10px;
+        .movie-info {
+          .title {
+            font-size: 24px;
+          }
+          .overview {
+          }
+        }
       }
     }
   }
@@ -78,6 +85,16 @@
       }
       .mob-skelton {
       }
+      .movie-info-box {
+        .movie-info {
+          .title {
+            font-size: 30px;
+          }
+          .overview {
+            font-size: 18px;
+          }
+        }
+      }
     }
   }
 }
@@ -88,6 +105,15 @@
       img {
       }
       .mob-skelton {
+      }
+      .movie-info-box {
+        bottom: 136px;
+        .movie-info {
+          .title {
+          }
+          .overview {
+          }
+        }
       }
     }
   }
