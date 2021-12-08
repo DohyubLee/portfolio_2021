@@ -3,6 +3,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import './Home.scss';
+import Slider from '../components/Slider';
 
 const Home = props => {
   const { imageConfig, api_key } = props;
@@ -59,6 +60,7 @@ const Home = props => {
           </div>
         )}
       </div>
+      <Slider />
     </div>
   );
 };
