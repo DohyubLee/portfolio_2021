@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Header from './components/Header';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { isMobile } from 'react-device-detect';
 
 function App() {
   const api_key = 'dfebf9cfca6fde7ded33adb1b64575ab';
@@ -18,14 +18,16 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home api_key={api_key} imageConfig={imageConfig} />} />
-        <Route path="now-playing" element={<h3>now-playing</h3>} />
-        <Route path="popular" element={<h3>popular11</h3>} />
-        <Route path="upcoming" element={<h3>upcoming</h3>} />
-        <Route path="my-list" element={<h3>upcoming</h3>} />
-      </Routes>
+      <div className={isMobile ? 'mob-app' : 'pc-app'}>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home api_key={api_key} imageConfig={imageConfig} />} />
+          <Route path="now-playing" element={<h3>now-playing</h3>} />
+          <Route path="popular" element={<h3>popular11</h3>} />
+          <Route path="upcoming" element={<h3>upcoming</h3>} />
+          <Route path="my-list" element={<h3>upcoming</h3>} />
+        </Routes>
+      </div>
     </div>
   );
 }
