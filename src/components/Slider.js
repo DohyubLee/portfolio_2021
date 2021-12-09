@@ -9,7 +9,6 @@ const Slider = props => {
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1199px)' });
   const skelDefaultArr = [0, 1, 2, 3, 4, 5, 6, 7];
 
-  //movieDatas.results.length > 0
   return (
     <div className="slider-wrap">
       <MobileView className="mob-view">
