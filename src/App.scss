@@ -12,34 +12,34 @@ $main-back-color: #141414;
 
 @media screen and (min-width: 576px) {
   .App {
-    .pc-app {
-      max-width: 540px;
-      margin-left: auto;
-      margin-right: auto;
-    }
+    // .pc-app {
+    //   max-width: 540px;
+    //   margin-left: auto;
+    //   margin-right: auto;
+    // }
   }
 }
 
 @media screen and (min-width: 768px) {
   .App {
-    .pc-app {
-      max-width: 720px;
-    }
+    // .pc-app {
+    //   max-width: 720px;
+    // }
   }
 }
 
 @media screen and (min-width: 992px) {
   .App {
-    .pc-app {
-      max-width: 960px;
-    }
+    // .pc-app {
+    //   max-width: 960px;
+    // }
   }
 }
 
 @media screen and (min-width: 1200px) {
   .App {
-    .pc-app {
-      max-width: 1170px;
-    }
+    // .pc-app {
+    //   max-width: 1170px;
+    // }
   }
 }
