@@ -4,25 +4,25 @@ import { BrowserView, MobileView, isMobile } from 'react-device-detect';
 import { Link } from 'react-router-dom';
 
 const Header = () => {
-  const [preScrollYPos, setPreScrollYPos] = useState(window.pageYOffset);
   const [isShow, setIsShow] = useState(true);
+  let prevScrollpos = window.pageYOffset;
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
 
     return () => {
-      // window.removeEventListener('scroll', handleScroll);
+      console.log('컴포넌트 종료');
+      window.removeEventListener('scroll', handleScroll);
     };
-  }, [preScrollYPos]);
+  }, []);
 
   const handleScroll = () => {
-    const currentYOffset = window.pageYOffset;
-    if (preScrollYPos > currentYOffset) {
+    var currentScrollPos = window.pageYOffset;
+    if (prevScrollpos > currentScrollPos) {
       setIsShow(true);
-      setPreScrollYPos(currentYOffset);
     } else {
       setIsShow(false);
-      setPreScrollYPos(currentYOffset);
     }
+    prevScrollpos = currentScrollPos;
   };
 
   return (
