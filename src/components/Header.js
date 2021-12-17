@@ -65,42 +65,7 @@ const Header = () => {
               <Link to="/" className="main-ic">
                 <i className="fas fa-video"></i>
               </Link>
-              {!isTabletOrMobile && (
-                <ul>
-                  <li>
-                    <NavLink
-                      to="/now-playing"
-                      className={({ isActive }) => (isActive ? 'active' : 'nav-tab')}
-                    >
-                      현재 상영 중
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      to="/popular"
-                      className={({ isActive }) => (isActive ? 'active' : 'nav-tab')}
-                    >
-                      인기
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      to="/upcoming"
-                      className={({ isActive }) => (isActive ? 'active' : 'nav-tab')}
-                    >
-                      개봉 예정
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      to="/my-list"
-                      className={({ isActive }) => (isActive ? 'active' : 'nav-tab')}
-                    >
-                      찜한 콘텐츠
-                    </NavLink>
-                  </li>
-                </ul>
-              )}
+              {!isTabletOrMobile && <NavList name={null} reference={null} />}
             </div>
             <div className="right-wrap">
               <form>
@@ -108,40 +73,7 @@ const Header = () => {
               </form>
             </div>
             {isTabletOrMobile && isDrop && isShow && (
-              <ul className="nav-dropdown" ref={mobNavRef}>
-                <li>
-                  <NavLink
-                    to="/now-playing"
-                    className={({ isActive }) => (isActive ? 'active' : 'nav-tab')}
-                  >
-                    현재 상영 중
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to="/popular"
-                    className={({ isActive }) => (isActive ? 'active' : 'nav-tab')}
-                  >
-                    인기
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to="/upcoming"
-                    className={({ isActive }) => (isActive ? 'active' : 'nav-tab')}
-                  >
-                    개봉 예정
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to="/my-list"
-                    className={({ isActive }) => (isActive ? 'active' : 'nav-tab')}
-                  >
-                    찜한 콘텐츠
-                  </NavLink>
-                </li>
-              </ul>
+              <NavList name={'nav-dropdown'} reference={mobNavRef} />
             )}
           </div>
         </header>
@@ -155,76 +87,10 @@ const Header = () => {
               {isSmallWitdh ? (
                 <div className="dropdown-wrap">
                   <button className="dropdown-btn">메뉴</button>
-                  <ul className="contents">
-                    <li>
-                      <NavLink
-                        to="/now-playing"
-                        className={({ isActive }) => (isActive ? 'active' : 'nav-tab')}
-                      >
-                        현재 상영 중
-                      </NavLink>
-                    </li>
-                    <li>
-                      <NavLink
-                        to="/popular"
-                        className={({ isActive }) => (isActive ? 'active' : 'nav-tab')}
-                      >
-                        인기
-                      </NavLink>
-                    </li>
-                    <li>
-                      <NavLink
-                        to="/upcoming"
-                        className={({ isActive }) => (isActive ? 'active' : 'nav-tab')}
-                      >
-                        개봉 예정
-                      </NavLink>
-                    </li>
-                    <li>
-                      <NavLink
-                        to="/my-list"
-                        className={({ isActive }) => (isActive ? 'active' : 'nav-tab')}
-                      >
-                        찜한 콘텐츠
-                      </NavLink>
-                    </li>
-                  </ul>
+                  <NavList name={'contents'} reference={null} />
                 </div>
               ) : (
-                <ul>
-                  <li>
-                    <NavLink
-                      to="/now-playing"
-                      className={({ isActive }) => (isActive ? 'active' : 'nav-tab')}
-                    >
-                      현재 상영 중
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      to="/popular"
-                      className={({ isActive }) => (isActive ? 'active' : 'nav-tab')}
-                    >
-                      인기
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      to="/upcoming"
-                      className={({ isActive }) => (isActive ? 'active' : 'nav-tab')}
-                    >
-                      개봉 예정
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      to="/my-list"
-                      className={({ isActive }) => (isActive ? 'active' : 'nav-tab')}
-                    >
-                      찜한 콘텐츠
-                    </NavLink>
-                  </li>
-                </ul>
+                <NavList name={null} reference={null} />
               )}
             </div>
             <div className="right-wrap">
@@ -236,6 +102,35 @@ const Header = () => {
         </header>
       )}
     </Fragment>
+  );
+};
+
+const NavList = props => {
+  const { name, reference } = props;
+
+  return (
+    <ul className={name} ref={reference}>
+      <li>
+        <NavLink to="/now-playing" className={({ isActive }) => (isActive ? 'active' : 'nav-tab')}>
+          현재 상영 중
+        </NavLink>
+      </li>
+      <li>
+        <NavLink to="/popular" className={({ isActive }) => (isActive ? 'active' : 'nav-tab')}>
+          인기
+        </NavLink>
+      </li>
+      <li>
+        <NavLink to="/upcoming" className={({ isActive }) => (isActive ? 'active' : 'nav-tab')}>
+          개봉 예정
+        </NavLink>
+      </li>
+      <li>
+        <NavLink to="/my-list" className={({ isActive }) => (isActive ? 'active' : 'nav-tab')}>
+          찜한 콘텐츠
+        </NavLink>
+      </li>
+    </ul>
   );
 };
 
