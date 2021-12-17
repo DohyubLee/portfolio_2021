@@ -9,6 +9,7 @@ const Header = () => {
   const [isDrop, setIsDrop] = useState(false);
   let prevScrollpos = window.pageYOffset;
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 767px)' });
+  const isSmallWitdh = useMediaQuery({ query: '(max-width: 575px)' });
   const mobNavRef = useRef();
   const navIcRef = useRef();
 
@@ -145,7 +146,94 @@ const Header = () => {
           </div>
         </header>
       ) : (
-        <header className="pc-header">web</header>
+        <header className={isShow ? 'pc-header' : 'pc-header hide'}>
+          <div className="header-items">
+            <div className="left-wrap">
+              <Link to="/" className="main-ic">
+                <i className="fas fa-video"></i>
+              </Link>
+              {isSmallWitdh ? (
+                <div className="dropdown-wrap">
+                  <button className="dropdown-btn">메뉴</button>
+                  <ul className="contents">
+                    <li>
+                      <NavLink
+                        to="/now-playing"
+                        className={({ isActive }) => (isActive ? 'active' : 'nav-tab')}
+                      >
+                        현재 상영 중
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        to="/popular"
+                        className={({ isActive }) => (isActive ? 'active' : 'nav-tab')}
+                      >
+                        인기
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        to="/upcoming"
+                        className={({ isActive }) => (isActive ? 'active' : 'nav-tab')}
+                      >
+                        개봉 예정
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        to="/my-list"
+                        className={({ isActive }) => (isActive ? 'active' : 'nav-tab')}
+                      >
+                        찜한 콘텐츠
+                      </NavLink>
+                    </li>
+                  </ul>
+                </div>
+              ) : (
+                <ul>
+                  <li>
+                    <NavLink
+                      to="/now-playing"
+                      className={({ isActive }) => (isActive ? 'active' : 'nav-tab')}
+                    >
+                      현재 상영 중
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/popular"
+                      className={({ isActive }) => (isActive ? 'active' : 'nav-tab')}
+                    >
+                      인기
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/upcoming"
+                      className={({ isActive }) => (isActive ? 'active' : 'nav-tab')}
+                    >
+                      개봉 예정
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/my-list"
+                      className={({ isActive }) => (isActive ? 'active' : 'nav-tab')}
+                    >
+                      찜한 콘텐츠
+                    </NavLink>
+                  </li>
+                </ul>
+              )}
+            </div>
+            <div className="right-wrap">
+              <form>
+                <input type="text" placeholder="검색" />
+              </form>
+            </div>
+          </div>
+        </header>
       )}
     </Fragment>
   );
