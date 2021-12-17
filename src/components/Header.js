@@ -25,12 +25,28 @@ const Header = () => {
 
   const handleScroll = () => {
     var currentScrollPos = window.pageYOffset;
-    if (prevScrollpos > currentScrollPos) {
-      setIsShow(true);
-      setIsDrop(false);
+
+    if (isMobile) {
+      if (currentScrollPos < 64) {
+        setIsShow(true);
+        setIsDrop(false);
+      } else {
+        if (prevScrollpos > currentScrollPos) {
+          setIsShow(true);
+          setIsDrop(false);
+        } else {
+          setIsShow(false);
+        }
+      }
     } else {
-      setIsShow(false);
+      if (prevScrollpos > currentScrollPos) {
+        setIsShow(true);
+        setIsDrop(false);
+      } else {
+        setIsShow(false);
+      }
     }
+
     prevScrollpos = currentScrollPos;
   };
 
