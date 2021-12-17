@@ -1,3 +1,23 @@
-.home-wrap {
+.mob-home {
   color: white;
+  margin-top: 64px;
+  .main-backdrop {
+  }
+  .contents-wrap {
+  }
+}
+
+.pc-home {
+}
+
+@media screen and (min-width: 576px) {
+}
+
+@media screen and (min-width: 768px) {
+}
+
+@media screen and (min-width: 992px) {
+}
+
+@media screen and (min-width: 1200px) {
 }
