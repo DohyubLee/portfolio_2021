@@ -25,7 +25,8 @@ a {
   text-decoration: none;
 }
 
-button {
+button,
+img {
   display: block;
 }
 

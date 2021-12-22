@@ -2,8 +2,44 @@
   color: white;
   margin-top: 64px;
   .main-backdrop {
+    img {
+      width: 100%;
+    }
+    .skel-wrap {
+      height: 35vh;
+    }
+    .info-wrap {
+      padding-left: 30px;
+      padding-right: 30px;
+      .title {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        font-weight: bold;
+        padding: 12px 0;
+      }
+      .overview {
+        display: -webkit-box;
+        word-wrap: break-word;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 14px;
+      }
+    }
   }
   .contents-wrap {
+    padding-left: 30px;
+    padding-right: 30px;
+    margin-top: 10px;
+    .slider-box {
+      .category-title {
+        font-weight: bold;
+        padding: 12px 0;
+        font-size: 18px;
+      }
+    }
   }
 }
 
@@ -11,12 +47,59 @@
 }
 
 @media screen and (min-width: 576px) {
+  .mob-home {
+    .main-backdrop {
+      .info-wrap {
+        .title {
+          font-size: 22px;
+        }
+      }
+    }
+    .contents-wrap {
+      .slider-box {
+        .category-title {
+          font-size: 24px;
+        }
+      }
+    }
+  }
 }
 
 @media screen and (min-width: 768px) {
+  .mob-home {
+    .main-backdrop {
+      .info-wrap {
+        padding-left: 60px;
+        padding-right: 60px;
+      }
+    }
+    .contents-wrap {
+      padding-left: 60px;
+      padding-right: 60px;
+    }
+  }
 }
 
 @media screen and (min-width: 992px) {
+  .mob-home {
+    .main-backdrop {
+      .info-wrap {
+        .title {
+          font-size: 30px;
+        }
+        .overview {
+          font-size: 18px;
+        }
+      }
+    }
+    .contents-wrap {
+      .slider-box {
+        .category-title {
+          font-size: 32px;
+        }
+      }
+    }
+  }
 }
 
 @media screen and (min-width: 1200px) {
