@@ -10,7 +10,8 @@ body {
 div,
 header,
 nav,
-input {
+input,
+li {
   box-sizing: border-box;
 }
 
@@ -25,7 +26,8 @@ a {
   text-decoration: none;
 }
 
-button {
+button,
+img {
   display: block;
 }
 
