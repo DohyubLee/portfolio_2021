@@ -4,7 +4,7 @@ import { isMobile } from 'react-device-detect';
 import axios from 'axios';
 import { Skeleton } from '@mui/material';
 import MobSlider from '../components/MobSlider';
-import Slider from '../components/Slider';
+import WebSlider from '../components/WebSlider';
 
 const Home = props => {
   const { imageConfig, popularDatas, nowPlayingDatas, upcomingDatas } = props;
@@ -90,7 +90,15 @@ const Home = props => {
           <div className="contents-wrap">
             <div className="slider-box">
               <div className="category-title">인기 작품들</div>
-              <Slider imageConfig={imageConfig} movieDatas={popularDatas} />
+              <WebSlider imageConfig={imageConfig} movieDatas={popularDatas} />
+            </div>
+            <div className="slider-box">
+              <div className="category-title">현재 상영중</div>
+              <WebSlider imageConfig={imageConfig} movieDatas={nowPlayingDatas} />
+            </div>
+            <div className="slider-box">
+              <div className="category-title">개봉 예정</div>
+              <WebSlider imageConfig={imageConfig} movieDatas={upcomingDatas} />
             </div>
           </div>
         </div>
