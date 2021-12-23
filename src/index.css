@@ -10,7 +10,8 @@ body {
 div,
 header,
 nav,
-input {
+input,
+li {
   box-sizing: border-box;
 }
 

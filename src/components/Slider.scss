@@ -1,111 +1,52 @@
 .slider-wrap {
-  color: white;
-  padding: 20px;
-  .mob-view {
-    .category-title {
-      font-weight: bold;
-      margin-bottom: 8px;
-      font-size: 20px;
-    }
-    ul {
-      overflow-x: scroll;
-      white-space: nowrap;
-      li {
-        width: 88px;
-        display: inline-block;
-        margin-right: 10px;
-
-        .custom-sk {
-          height: 126px;
-          width: 100%;
-        }
-
-        img {
-          width: 100%;
-          display: block;
-        }
+  ul {
+    overflow-x: scroll;
+    white-space: nowrap;
+    li {
+      width: 25%;
+      display: inline-block;
+      padding-right: 10px;
+      padding: 0 0.6vw;
+      img {
+        width: 100%;
       }
-      li:last-child {
-        margin-right: 0;
+      .custom-sk {
+        width: 100%;
+        height: 162px;
+      }
+      &:last-child {
+        // padding-right: 0;
       }
     }
   }
-  .pc-view {
+  .btn-wrap {
+    display: flex;
+    justify-content: space-between;
+    button {
+      border: none;
+      background-color: transparent;
+      padding: 0;
+      color: #b3b3b3;
+      font-size: 16px;
+    }
   }
 }
 
 @media screen and (min-width: 576px) {
-  .slider-wrap {
-    .mob-view {
-      .category-title {
-      }
-      ul {
-        li {
-          width: 112px;
-          .custom-sk {
-            height: 160px;
-          }
-          img {
-          }
-        }
-      }
-    }
-  }
 }
 
 @media screen and (min-width: 768px) {
   .slider-wrap {
-    .mob-view {
-      .category-title {
-      }
-      ul {
-        li {
-          width: 122px;
-          .custom-sk {
-            height: 175px;
-          }
-          img {
-          }
-        }
+    ul {
+      li {
+        // width: 20%;
       }
     }
   }
 }
 
 @media screen and (min-width: 992px) {
-  .slider-wrap {
-    .mob-view {
-      .category-title {
-      }
-      ul {
-        li {
-          width: 134px;
-          .custom-sk {
-            height: 192px;
-          }
-          img {
-          }
-        }
-      }
-    }
-  }
 }
 
 @media screen and (min-width: 1200px) {
-  .slider-wrap {
-    .mob-view {
-      .category-title {
-      }
-      ul {
-        li {
-          width: 144px;
-          .custom-sk {
-            height: 207px;
-          }
-          img {
-          }
-        }
-      }
-    }
-  }
 }

@@ -15,7 +15,7 @@ const MobSlider = props => {
               return (
                 <li>
                   <img
-                    src={`${imageConfig.base_url}${imageConfig.poster_sizes[1]}${data.poster_path}`}
+                    src={`${imageConfig.base_url}${imageConfig.poster_sizes[2]}${data.poster_path}`}
                   />
                 </li>
               );
