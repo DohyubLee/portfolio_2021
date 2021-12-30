@@ -5,6 +5,7 @@ import axios from 'axios';
 import { Skeleton } from '@mui/material';
 import MobSlider from '../components/MobSlider';
 import WebSlider from '../components/WebSlider';
+import { Link } from 'react-router-dom';
 
 const Home = props => {
   const { imageConfig, api_key } = props;
@@ -29,7 +30,7 @@ const Home = props => {
         language: 'ko',
       },
     }).then(res => {
-      setPopularDatas({ ...res.data });
+      setPopularDatas(res.data);
     });
     axios({
       method: 'get',
@@ -40,7 +41,7 @@ const Home = props => {
         language: 'ko',
       },
     }).then(res => {
-      setNowPlayingDatas({ ...res.data });
+      setNowPlayingDatas(res.data);
     });
     axios({
       method: 'get',
@@ -51,9 +52,15 @@ const Home = props => {
         language: 'ko',
       },
     }).then(res => {
-      setUpcomingDatas({ ...res.data });
+      setUpcomingDatas(res.data);
     });
   }, []);
+  //   <Link
+  //   to={`/detail?movie_id=${popularDatas.results[0].id}`}
+  //   className="text-link"
+  // >
+  //   {popularDatas.results[0].title}
+  // </Link>
 
   return (
     <Fragment>
@@ -75,6 +82,14 @@ const Home = props => {
                 <Fragment>
                   <div className="title">{popularDatas.results[0].title}</div>
                   <div className="overview">{popularDatas.results[0].overview}</div>
+                  <div className="detail">
+                    <Link
+                      to={`/detail?movie_id=${popularDatas.results[0].id}`}
+                      className="text-link"
+                    >
+                      더보기
+                    </Link>
+                  </div>
                 </Fragment>
               ) : (
                 <Fragment>
@@ -90,15 +105,30 @@ const Home = props => {
           </div>
           <div className="contents-wrap">
             <div className="slider-box">
-              <div className="category-title">인기 작품들</div>
+              <div className="category-title">
+                <span className="category">인기 작품들</span>
+                <Link to="/popular" className="text-link">
+                  더보기
+                </Link>
+              </div>
               <MobSlider imageConfig={imageConfig} movieDatas={popularDatas} />
             </div>
             <div className="slider-box">
-              <div className="category-title">현재 상영중</div>
+              <div className="category-title">
+                <span className="category">현재 상영중</span>
+                <Link to="/now-playing" className="text-link">
+                  더보기
+                </Link>
+              </div>
               <MobSlider imageConfig={imageConfig} movieDatas={nowPlayingDatas} />
             </div>
             <div className="slider-box">
-              <div className="category-title">개봉 예정</div>
+              <div className="category-title">
+                <span className="category">개봉 예정</span>
+                <Link to="/upcoming" className="text-link">
+                  더보기
+                </Link>
+              </div>
               <MobSlider imageConfig={imageConfig} movieDatas={upcomingDatas} />
             </div>
           </div>
@@ -120,6 +150,14 @@ const Home = props => {
                 <Fragment>
                   <div className="title">{popularDatas.results[0].title}</div>
                   <div className="overview">{popularDatas.results[0].overview}</div>
+                  <div className="detail">
+                    <Link
+                      to={`/detail?movie_id=${popularDatas.results[0].id}`}
+                      className="text-link"
+                    >
+                      더보기
+                    </Link>
+                  </div>
                 </Fragment>
               ) : (
                 <Fragment>
@@ -135,15 +173,30 @@ const Home = props => {
           </div>
           <div className="contents-wrap">
             <div className="slider-box">
-              <div className="category-title">인기 작품들</div>
+              <div className="category-title">
+                <span className="category">인기 작품들</span>
+                <Link to="/popular" className="text-link">
+                  더보기
+                </Link>
+              </div>
               <WebSlider imageConfig={imageConfig} movieDatas={popularDatas} />
             </div>
             <div className="slider-box">
-              <div className="category-title">현재 상영중</div>
+              <div className="category-title">
+                <span className="category">현재 상영중</span>
+                <Link to="/now_playing" className="text-link">
+                  더보기
+                </Link>
+              </div>
               <WebSlider imageConfig={imageConfig} movieDatas={nowPlayingDatas} />
             </div>
             <div className="slider-box">
-              <div className="category-title">개봉 예정</div>
+              <div className="category-title">
+                <span className="category">개봉 예정</span>
+                <Link to="/upcoming" className="text-link">
+                  더보기
+                </Link>
+              </div>
               <WebSlider imageConfig={imageConfig} movieDatas={upcomingDatas} />
             </div>
           </div>

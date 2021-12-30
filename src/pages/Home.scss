@@ -27,6 +27,15 @@
         text-overflow: ellipsis;
         font-size: 14px;
       }
+      .detail {
+        display: flex;
+        justify-content: end;
+        padding: 4px 0;
+        .text-link {
+          color: #b3b3b3;
+          font-size: 14px;
+        }
+      }
     }
   }
   .contents-wrap {
@@ -35,9 +44,18 @@
     margin-top: 10px;
     .slider-box {
       .category-title {
-        font-weight: bold;
         padding: 12px 0;
-        font-size: 18px;
+        display: flex;
+        align-items: center;
+        .category {
+          font-size: 18px;
+          font-weight: bold;
+          margin-right: 10px;
+        }
+        .text-link {
+          color: #b3b3b3;
+          font-size: 14px;
+        }
       }
     }
   }
@@ -72,6 +90,18 @@
         text-overflow: ellipsis;
         font-size: 14px;
       }
+      .detail {
+        display: flex;
+        justify-content: end;
+        padding: 4px 0;
+        .text-link {
+          color: #b3b3b3;
+          font-size: 14px;
+          &:hover {
+            color: white;
+          }
+        }
+      }
     }
   }
   .contents-wrap {
@@ -79,9 +109,21 @@
     .slider-box {
       margin-top: 20px;
       .category-title {
-        font-weight: bold;
         padding: 12px 0;
-        font-size: 18px;
+        display: flex;
+        align-items: center;
+        .category {
+          font-size: 18px;
+          font-weight: bold;
+          margin-right: 10px;
+        }
+        .text-link {
+          color: #b3b3b3;
+          font-size: 14px;
+          &:hover {
+            color: white;
+          }
+        }
       }
     }
   }
