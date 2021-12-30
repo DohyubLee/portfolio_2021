@@ -5,6 +5,7 @@ import { useMediaQuery } from 'react-responsive';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { Link } from 'react-router-dom';
 
 const WebSlider = props => {
   const { imageConfig, movieDatas } = props;
@@ -33,9 +34,11 @@ const WebSlider = props => {
           ? movieDatas.results.map(data => {
               return (
                 <div className="poster-box" key={data.id}>
-                  <img
-                    src={`${imageConfig.base_url}${imageConfig.poster_sizes[3]}${data.poster_path}`}
-                  />
+                  <Link to={`/detail?movie_id=${data.id}`} className="img-link">
+                    <img
+                      src={`${imageConfig.base_url}${imageConfig.poster_sizes[3]}${data.poster_path}`}
+                    />
+                  </Link>
                 </div>
               );
             })

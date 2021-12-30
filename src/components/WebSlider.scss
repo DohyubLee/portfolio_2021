@@ -1,10 +1,13 @@
 .slider-wrap {
   .poster-box {
     padding: 0px 0.6vw;
-
-    img {
-      width: 100%;
+    .img-link {
+      display: block;
+      img {
+        width: 100%;
+      }
     }
+
     &.skel {
       .custom-sk {
         height: 162px;

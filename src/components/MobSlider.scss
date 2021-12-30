@@ -6,9 +6,13 @@
       width: 88px;
       display: inline-block;
       margin-right: 10px;
-      img {
-        width: 100%;
+      .img-link {
+        display: block;
+        img {
+          width: 100%;
+        }
       }
+
       .custom-sk {
         width: 100%;
         height: 127px;

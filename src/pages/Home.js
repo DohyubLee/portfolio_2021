@@ -55,12 +55,6 @@ const Home = props => {
       setUpcomingDatas(res.data);
     });
   }, []);
-  //   <Link
-  //   to={`/detail?movie_id=${popularDatas.results[0].id}`}
-  //   className="text-link"
-  // >
-  //   {popularDatas.results[0].title}
-  // </Link>
 
   return (
     <Fragment>
