@@ -7,7 +7,53 @@ import MobSlider from '../components/MobSlider';
 import WebSlider from '../components/WebSlider';
 
 const Home = props => {
-  const { imageConfig, popularDatas, nowPlayingDatas, upcomingDatas } = props;
+  const { imageConfig, api_key } = props;
+
+  const [popularDatas, setPopularDatas] = useState({
+    results: [],
+  });
+  const [nowPlayingDatas, setNowPlayingDatas] = useState({
+    results: [],
+  });
+  const [upcomingDatas, setUpcomingDatas] = useState({
+    results: [],
+  });
+
+  useEffect(() => {
+    axios({
+      method: 'get',
+      baseURL: 'https://api.themoviedb.org',
+      url: '/3/movie/popular',
+      params: {
+        api_key,
+        language: 'ko',
+      },
+    }).then(res => {
+      setPopularDatas({ ...res.data });
+    });
+    axios({
+      method: 'get',
+      baseURL: 'https://api.themoviedb.org',
+      url: '/3/movie/now_playing',
+      params: {
+        api_key,
+        language: 'ko',
+      },
+    }).then(res => {
+      setNowPlayingDatas({ ...res.data });
+    });
+    axios({
+      method: 'get',
+      baseURL: 'https://api.themoviedb.org',
+      url: '/3/movie/upcoming',
+      params: {
+        api_key,
+        language: 'ko',
+      },
+    }).then(res => {
+      setUpcomingDatas({ ...res.data });
+    });
+  }, []);
 
   return (
     <Fragment>
