@@ -43,7 +43,7 @@ function App() {
   return (
     <div className="App">
       <div className={isMobile ? 'mob-app' : 'pc-app'}>
-        <Header />
+        <Header isMobile={isMobile} />
         <Routes>
           <Route path="/" element={<Home imageConfig={imageConfig} api_key={api_key} />} />
           <Route
