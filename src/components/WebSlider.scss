@@ -1,8 +1,27 @@
 .slider-wrap {
+  .slick-list {
+    overflow: visible;
+    .slick-slide {
+      // visibility: hidden;
+      // pointer-events: none;
+    }
+    .slick-active {
+      // visibility: visible;
+      // pointer-events: visible;
+    }
+  }
   .poster-box {
     padding: 0px 0.6vw;
+    position: relative;
     .img-link {
       display: block;
+      // pointer-events: none;
+      &:hover {
+        transform: scale(1.2);
+        position: absolute;
+        z-index: 1;
+        top: -10px;
+      }
       img {
         width: 100%;
       }
