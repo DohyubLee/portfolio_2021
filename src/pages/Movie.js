@@ -2,6 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react';
 import './Movie.scss';
 import { isMobile } from 'react-device-detect';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const Movie = props => {
   const { imageConfig, api_key, genres, category } = props;
@@ -81,9 +82,11 @@ const Movie = props => {
             {movieDatas.results.map(data => {
               return (
                 <li key={data.id}>
-                  <img
-                    src={`${imageConfig.base_url}${imageConfig.backdrop_sizes[3]}${data.backdrop_path}`}
-                  />
+                  <Link to={`/detail?movie_id=${data.id}`} className="img-link">
+                    <img
+                      src={`${imageConfig.base_url}${imageConfig.backdrop_sizes[3]}${data.backdrop_path}`}
+                    />
+                  </Link>
                   <div className="info">
                     <div className="title">{data.title}</div>
                     <div className="genre">
@@ -110,9 +113,11 @@ const Movie = props => {
               {movieDatas.results.map(data => {
                 return (
                   <li key={data.id}>
-                    <img
-                      src={`${imageConfig.base_url}${imageConfig.backdrop_sizes[3]}${data.backdrop_path}`}
-                    />
+                    <Link to={`/detail?movie_id=${data.id}`} className="text-link">
+                      <img
+                        src={`${imageConfig.base_url}${imageConfig.backdrop_sizes[3]}${data.backdrop_path}`}
+                      />
+                    </Link>
                     <div className="info">
                       <div className="title">{data.title}</div>
                       <div className="genre">
