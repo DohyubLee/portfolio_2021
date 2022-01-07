@@ -20,6 +20,7 @@ const Detail = props => {
   });
   const [isWish, setIsWish] = useState(false);
   const skelDefaultArr = [0, 1, 2, 3, 4, 5, 6, 7];
+  let getList = JSON.parse(localStorage.getItem('my-list'));
 
   useEffect(() => {
     axios({
@@ -44,10 +45,44 @@ const Detail = props => {
     }).then(res => {
       setCredits(res.data);
     });
+    if (!!getList) {
+      if (getList.filter(data => data.id == movieId).length > 0) {
+        setIsWish(true);
+      }
+    }
   }, []);
 
-  const putWishList = () => {
-    setIsWish(!isWish);
+  const putWishList = data => {
+    let getList = JSON.parse(localStorage.getItem('my-list'));
+
+    if (!!getList) {
+      // 1개이상 있을때
+      if (getList.filter(list => list.id == data.id).length > 0) {
+        // 이미 담겨있을때
+        let index = getList.findIndex(list => list.id === data.id);
+        getList.splice(index, 1);
+        setIsWish(false);
+      } else {
+        getList.push({
+          id: data.id,
+          title: data.title,
+          backdrop_path: data.backdrop_path,
+          genres: data.genres,
+        });
+        setIsWish(true);
+      }
+    } else {
+      // 아무것도 없을때
+      getList = [];
+      getList.push({
+        id: data.id,
+        title: data.title,
+        backdrop_path: data.backdrop_path,
+        genres: data.genres,
+      });
+      setIsWish(true);
+    }
+    localStorage.setItem('my-list', JSON.stringify(getList));
   };
 
   return (
@@ -63,8 +98,8 @@ const Detail = props => {
                 <div className="main-info">
                   <div className="title-wrap">
                     <div className="title">{details.title}</div>
-                    <button className="wish" onClick={putWishList}>
-                      {isWish ? <i className="far fa-heart"></i> : <i className="fas fa-heart"></i>}
+                    <button className="wish" onClick={() => putWishList(details)}>
+                      {isWish ? <i className="fas fa-heart"></i> : <i className="far fa-heart"></i>}
                     </button>
                   </div>
                   <div className="genre">
