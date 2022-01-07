@@ -1,17 +1,19 @@
 import React, { Fragment, useEffect, useRef, useState } from 'react';
 import './Header.scss';
 import { useMediaQuery } from 'react-responsive';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 
 const Header = props => {
   const { isMobile } = props;
   const [isShow, setIsShow] = useState(true);
   const [isDrop, setIsDrop] = useState(false);
+  const [value, setValue] = useState('');
   let prevScrollpos = window.pageYOffset;
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 767px)' });
   const isSmallWitdh = useMediaQuery({ query: '(max-width: 575px)' });
   const mobNavRef = useRef();
   const navIcRef = useRef();
+  let navigate = useNavigate();
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
@@ -67,6 +69,15 @@ const Header = props => {
     setIsDrop(!isDrop);
   };
 
+  const handleSubmit = event => {
+    navigate(`/search?keyword=${value}`);
+    event.preventDefault();
+  };
+
+  const handleChange = event => {
+    setValue(event.target.value);
+  };
+
   return (
     <Fragment>
       {isMobile ? (
@@ -84,8 +95,8 @@ const Header = props => {
               {!isTabletOrMobile && <NavList name={null} reference={null} />}
             </div>
             <div className="right-wrap">
-              <form>
-                <input type="text" placeholder="검색" />
+              <form onSubmit={handleSubmit}>
+                <input type="text" placeholder="검색" value={value} onChange={handleChange} />
               </form>
             </div>
             {isTabletOrMobile && isDrop && isShow && (
@@ -110,8 +121,8 @@ const Header = props => {
               )}
             </div>
             <div className="right-wrap">
-              <form>
-                <input type="text" placeholder="검색" />
+              <form onSubmit={handleSubmit}>
+                <input type="text" placeholder="검색" value={value} onChange={handleChange} />
               </form>
             </div>
           </div>

@@ -7,6 +7,7 @@ import { isMobile } from 'react-device-detect';
 import axios from 'axios';
 import Movie from './pages/Movie';
 import Detail from './pages/Detail';
+import Search from './pages/Search';
 
 function App() {
   const api_key = 'dfebf9cfca6fde7ded33adb1b64575ab';
@@ -81,6 +82,7 @@ function App() {
           />
           <Route path="my-list" element={<h3>upcoming</h3>} />
           <Route path="detail" element={<Detail api_key={api_key} imageConfig={imageConfig} />} />
+          <Route path="search" element={<Search api_key={api_key} imageConfig={imageConfig} />} />
         </Routes>
       </div>
     </div>
