@@ -80,7 +80,7 @@ function App() {
             }
           />
           <Route path="my-list" element={<h3>upcoming</h3>} />
-          <Route path="detail" element={<Detail />} />
+          <Route path="detail" element={<Detail api_key={api_key} imageConfig={imageConfig} />} />
         </Routes>
       </div>
     </div>
