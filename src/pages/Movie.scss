@@ -8,11 +8,13 @@
   }
   ul {
     li {
-      img {
-        width: 100%;
-
-        box-sizing: border-box;
-        padding: 0 8px;
+      .img-link {
+        display: block;
+        img {
+          width: 100%;
+          box-sizing: border-box;
+          padding: 0 8px;
+        }
       }
       .info {
         padding-left: 20px;
@@ -52,8 +54,11 @@
     ul {
       li {
         padding: 0 8px;
-        img {
-          width: 100%;
+        .text-link {
+          display: block;
+          img {
+            width: 100%;
+          }
         }
         .info {
           margin-bottom: 18px;

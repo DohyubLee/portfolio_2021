@@ -1,10 +1,10 @@
 import React, { Fragment, useEffect, useRef, useState } from 'react';
 import './Header.scss';
-import { BrowserView, MobileView, isMobile } from 'react-device-detect';
 import { useMediaQuery } from 'react-responsive';
 import { Link, NavLink } from 'react-router-dom';
 
-const Header = () => {
+const Header = props => {
+  const { isMobile } = props;
   const [isShow, setIsShow] = useState(true);
   const [isDrop, setIsDrop] = useState(false);
   let prevScrollpos = window.pageYOffset;

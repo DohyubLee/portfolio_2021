@@ -1,5 +1,6 @@
 import { Skeleton } from '@mui/material';
 import React, { Fragment } from 'react';
+import { Link } from 'react-router-dom';
 import './MobSlider.scss';
 
 const MobSlider = props => {
@@ -13,10 +14,12 @@ const MobSlider = props => {
           <Fragment>
             {movieDatas.results.map(data => {
               return (
-                <li>
-                  <img
-                    src={`${imageConfig.base_url}${imageConfig.poster_sizes[2]}${data.poster_path}`}
-                  />
+                <li key={data.id}>
+                  <Link to={`/detail?movie_id=${data.id}`} className="img-link">
+                    <img
+                      src={`${imageConfig.base_url}${imageConfig.poster_sizes[2]}${data.poster_path}`}
+                    />
+                  </Link>
                 </li>
               );
             })}
@@ -25,7 +28,7 @@ const MobSlider = props => {
           <Fragment>
             {skelDefaultArr.map((data, index) => {
               return (
-                <li>
+                <li key={data}>
                   <Skeleton
                     className="custom-sk"
                     sx={{ bgcolor: 'grey.900' }}

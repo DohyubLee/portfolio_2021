@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { isMobile } from 'react-device-detect';
 import axios from 'axios';
 import Movie from './pages/Movie';
+import Detail from './pages/Detail';
 
 function App() {
   const api_key = 'dfebf9cfca6fde7ded33adb1b64575ab';
@@ -42,7 +43,7 @@ function App() {
   return (
     <div className="App">
       <div className={isMobile ? 'mob-app' : 'pc-app'}>
-        <Header />
+        <Header isMobile={isMobile} />
         <Routes>
           <Route path="/" element={<Home imageConfig={imageConfig} api_key={api_key} />} />
           <Route
@@ -79,6 +80,7 @@ function App() {
             }
           />
           <Route path="my-list" element={<h3>upcoming</h3>} />
+          <Route path="detail" element={<Detail api_key={api_key} imageConfig={imageConfig} />} />
         </Routes>
       </div>
     </div>
