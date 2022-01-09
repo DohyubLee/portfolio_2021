@@ -2,9 +2,16 @@
 
 배포 주소 [https://dohyublee.github.io/portfolio_2021/](https://dohyublee.github.io/portfolio_2021/)
 
-## Available Scripts
+영화정보를 제공하는 페이지입니다.
 
-In the project directory, you can run:
+## 사용한 도구들
+
+- `react-router-dom`
+- `react-responsive`
+- `react-device-detect`
+- `react-slick`
+- `axios`
+- `font-awesome`
 
 ### `npm start`
 

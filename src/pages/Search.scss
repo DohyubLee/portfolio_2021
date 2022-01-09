@@ -1,0 +1,126 @@
+.mob-search {
+  color: white;
+  padding-top: 4px;
+  margin-top: 60px;
+  h3 {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+  ul {
+    li {
+      margin-bottom: 10px;
+      .img-link {
+        display: block;
+        img {
+          width: 100%;
+        }
+      }
+      .info {
+        padding: 12px 30px;
+        .title {
+          font-weight: bold;
+        }
+        .date {
+          font-size: 14px;
+          color: #b3b3b3;
+        }
+        .overview {
+          display: -webkit-box;
+          word-wrap: break-word;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          font-size: 14px;
+          margin-top: 10px;
+        }
+      }
+    }
+  }
+  &.web-search {
+    h3 {
+      padding: 0px 14px;
+    }
+    .info {
+      padding-left: 14px;
+      padding-right: 14px;
+    }
+  }
+  .not-exist {
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 30px;
+    margin: 200px 0;
+  }
+}
+.web-search {
+  color: white;
+  padding-top: 4px;
+  margin-top: 60px;
+}
+@media screen and (min-width: 576px) {
+  .mob-search {
+    &.web-search {
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 540px;
+      h3 {
+        padding: 0;
+      }
+      .info {
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .mob-search {
+    h3 {
+      padding-left: 60px;
+      padding-right: 60px;
+    }
+    ul {
+      padding-left: 60px;
+      padding-right: 60px;
+      li {
+        display: flex;
+        margin-bottom: 10px;
+        border: 1px solid #b3b3b3;
+        .img-link {
+          img {
+            width: 200px;
+          }
+        }
+      }
+    }
+    &.web-search {
+      max-width: 720px;
+      ul {
+        padding-left: 0;
+        padding-right: 0;
+        .info {
+          padding: 12px 30px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .mob-search {
+    &.web-search {
+      max-width: 960px;
+    }
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .mob-search {
+    &.web-search {
+      max-width: 1170px;
+    }
+  }
+}

@@ -1,0 +1,151 @@
+.mob-movie {
+  color: white;
+  padding-top: 4px;
+  margin-top: 60px;
+  h3 {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+  ul {
+    li {
+      .img-link {
+        display: block;
+        img {
+          width: 100%;
+          box-sizing: border-box;
+          padding: 0 8px;
+        }
+      }
+      .info {
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-bottom: 18px;
+        .title {
+          font-weight: bold;
+          padding: 8px 0px;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+        }
+        .genre {
+          font-size: 14px;
+          color: #b3b3b3;
+
+          .genre-title {
+            margin-right: 2px;
+          }
+          .genre-name {
+            margin-right: 6px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.web-movie {
+  color: white;
+  padding-top: 4px;
+  margin-top: 60px;
+  .contents-wrap {
+    padding: 0px 14px;
+    h3 {
+    }
+    ul {
+      li {
+        padding: 0 8px;
+        .text-link {
+          display: block;
+          img {
+            width: 100%;
+          }
+        }
+        .info {
+          margin-bottom: 18px;
+          .title {
+            font-weight: bold;
+            padding: 8px 0px;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+            font-size: 20px;
+          }
+          .genre {
+            font-size: 14px;
+            color: #b3b3b3;
+
+            .genre-title {
+              margin-right: 2px;
+            }
+            .genre-name {
+              margin-right: 6px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 576px) {
+  .web-movie {
+    .contents-wrap {
+      max-width: 540px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 0;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .mob-movie {
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      li {
+        width: 50%;
+      }
+    }
+  }
+  .web-movie {
+    .contents-wrap {
+      max-width: 720px;
+      ul {
+        display: flex;
+        flex-wrap: wrap;
+        li {
+          width: 50%;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .web-movie {
+    .contents-wrap {
+      max-width: 960px;
+    }
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .mob-movie {
+    ul {
+      li {
+        width: 25%;
+      }
+    }
+  }
+  .web-movie {
+    .contents-wrap {
+      max-width: 1170px;
+      ul {
+        li {
+          width: 25%;
+        }
+      }
+    }
+  }
+}
