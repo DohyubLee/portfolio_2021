@@ -98,33 +98,13 @@ const Home = props => {
             </div>
           </div>
           <div className="contents-wrap">
-            <div className="slider-box">
-              <div className="category-title">
-                <span className="category">인기 작품들</span>
-                <Link to="/popular" className="text-link">
-                  더보기
-                </Link>
-              </div>
-              <MobSlider imageConfig={imageConfig} movieDatas={popularDatas} />
-            </div>
-            <div className="slider-box">
-              <div className="category-title">
-                <span className="category">현재 상영중</span>
-                <Link to="/now-playing" className="text-link">
-                  더보기
-                </Link>
-              </div>
-              <MobSlider imageConfig={imageConfig} movieDatas={nowPlayingDatas} />
-            </div>
-            <div className="slider-box">
-              <div className="category-title">
-                <span className="category">개봉 예정</span>
-                <Link to="/upcoming" className="text-link">
-                  더보기
-                </Link>
-              </div>
-              <MobSlider imageConfig={imageConfig} movieDatas={upcomingDatas} />
-            </div>
+            <SliderBox imageConfig={imageConfig} movieDatas={popularDatas} category={'popular'} />
+            <SliderBox
+              imageConfig={imageConfig}
+              movieDatas={nowPlayingDatas}
+              category={'now-playing'}
+            />
+            <SliderBox imageConfig={imageConfig} movieDatas={upcomingDatas} category={'upcoming'} />
           </div>
         </div>
       ) : (
@@ -166,37 +146,41 @@ const Home = props => {
             </div>
           </div>
           <div className="contents-wrap">
-            <div className="slider-box">
-              <div className="category-title">
-                <span className="category">인기 작품들</span>
-                <Link to="/popular" className="text-link">
-                  더보기
-                </Link>
-              </div>
-              <WebSlider imageConfig={imageConfig} movieDatas={popularDatas} />
-            </div>
-            <div className="slider-box">
-              <div className="category-title">
-                <span className="category">현재 상영중</span>
-                <Link to="/now_playing" className="text-link">
-                  더보기
-                </Link>
-              </div>
-              <WebSlider imageConfig={imageConfig} movieDatas={nowPlayingDatas} />
-            </div>
-            <div className="slider-box">
-              <div className="category-title">
-                <span className="category">개봉 예정</span>
-                <Link to="/upcoming" className="text-link">
-                  더보기
-                </Link>
-              </div>
-              <WebSlider imageConfig={imageConfig} movieDatas={upcomingDatas} />
-            </div>
+            <SliderBox imageConfig={imageConfig} movieDatas={popularDatas} category={'popular'} />
+            <SliderBox
+              imageConfig={imageConfig}
+              movieDatas={nowPlayingDatas}
+              category={'now_playing'}
+            />
+            <SliderBox imageConfig={imageConfig} movieDatas={upcomingDatas} category={'upcoming'} />
           </div>
         </div>
       )}
     </Fragment>
+  );
+};
+
+const SliderBox = props => {
+  const { imageConfig, movieDatas, category } = props;
+  const categoryObj = {
+    popular: '인기 작품들',
+    now_playing: '현재 상영중',
+    upcoming: '개봉 예정',
+  };
+  return (
+    <div className="slider-box">
+      <div className="category-title">
+        <span className="category">{categoryObj[category]}</span>
+        <Link to={`/${category}`} className="text-link">
+          더보기
+        </Link>
+      </div>
+      {isMobile ? (
+        <MobSlider imageConfig={imageConfig} movieDatas={movieDatas} />
+      ) : (
+        <WebSlider imageConfig={imageConfig} movieDatas={movieDatas} />
+      )}
+    </div>
   );
 };
 

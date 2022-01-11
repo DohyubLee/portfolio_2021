@@ -36,7 +36,7 @@ const Search = props => {
         <ul>
           {list.results.map(data => {
             return (
-              <li>
+              <li key={data.id}>
                 <Link to={`/detail?movie_id=${data.id}`} className="img-link">
                   {isTabletOrMobile ? (
                     <img

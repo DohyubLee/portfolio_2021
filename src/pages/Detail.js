@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react';
-import { useParams, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import './Detail.scss';
 import { isMobile } from 'react-device-detect';
 import axios from 'axios';
