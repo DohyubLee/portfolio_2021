@@ -6,9 +6,15 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { Link } from 'react-router-dom';
+import { Datas, ImageConfig } from '../types';
 
-const WebSlider = props => {
-  const { imageConfig, movieDatas } = props;
+type WebSliderProps = {
+  imageConfig: ImageConfig;
+  movieDatas: Datas | null;
+};
+
+const WebSlider = ({ imageConfig, movieDatas }: WebSliderProps) => {
+  // const { imageConfig, movieDatas } = props;
   const skelDefaultArr = [0, 1, 2, 3, 4, 5, 6, 7];
   const isTablet = useMediaQuery({ query: '(min-width: 768px)' });
   const isLarge = useMediaQuery({ query: '(min-width: 992px)' });
@@ -31,7 +37,7 @@ const WebSlider = props => {
   return (
     <div className="slider-wrap">
       <Slider {...settings}>
-        {movieDatas.results.length > 0
+        {!!movieDatas
           ? movieDatas.results.map(data => {
               return (
                 <div className="poster-box" key={data.id}>

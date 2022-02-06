@@ -6,19 +6,17 @@ import { Skeleton } from '@mui/material';
 import MobSlider from '../components/MobSlider';
 import WebSlider from '../components/WebSlider';
 import { Link } from 'react-router-dom';
+import { Datas, ImageConfig } from '../types';
 
-const Home = props => {
-  const { imageConfig, api_key } = props;
+type HomeProps = {
+  imageConfig: ImageConfig;
+  api_key: string;
+};
 
-  const [popularDatas, setPopularDatas] = useState({
-    results: [],
-  });
-  const [nowPlayingDatas, setNowPlayingDatas] = useState({
-    results: [],
-  });
-  const [upcomingDatas, setUpcomingDatas] = useState({
-    results: [],
-  });
+const Home = ({ imageConfig, api_key }: HomeProps) => {
+  const [popularDatas, setPopularDatas] = useState<Datas | null>(null);
+  const [nowPlayingDatas, setNowPlayingDatas] = useState<Datas | null>(null);
+  const [upcomingDatas, setUpcomingDatas] = useState<Datas | null>(null);
 
   useEffect(() => {
     axios({
@@ -61,7 +59,7 @@ const Home = props => {
       {isMobile ? (
         <div className="mob-home">
           <div className="main-backdrop">
-            {popularDatas.results.length > 0 ? (
+            {!!popularDatas ? (
               <img
                 src={`${imageConfig.base_url}${imageConfig.backdrop_sizes[3]}${popularDatas.results[0].backdrop_path}`}
               />
@@ -72,7 +70,7 @@ const Home = props => {
             )}
 
             <div className="info-wrap">
-              {popularDatas.results.length > 0 ? (
+              {!!popularDatas ? (
                 <Fragment>
                   <div className="title">{popularDatas.results[0].title}</div>
                   <div className="overview">{popularDatas.results[0].overview}</div>
@@ -110,7 +108,7 @@ const Home = props => {
       ) : (
         <div className="pc-home">
           <div className="main-backdrop">
-            {popularDatas.results.length > 0 ? (
+            {!!popularDatas ? (
               <img
                 src={`${imageConfig.base_url}${imageConfig.backdrop_sizes[3]}${popularDatas.results[0].backdrop_path}`}
               />
@@ -120,7 +118,7 @@ const Home = props => {
               </div>
             )}
             <div className="info-wrap">
-              {popularDatas.results.length > 0 ? (
+              {!!popularDatas ? (
                 <Fragment>
                   <div className="title">{popularDatas.results[0].title}</div>
                   <div className="overview">{popularDatas.results[0].overview}</div>
@@ -160,9 +158,15 @@ const Home = props => {
   );
 };
 
-const SliderBox = props => {
-  const { imageConfig, movieDatas, category } = props;
-  const categoryObj = {
+type SliderBoxProps = {
+  imageConfig: ImageConfig;
+  movieDatas: Datas | null;
+  category: string;
+};
+
+const SliderBox = ({ imageConfig, movieDatas, category }: SliderBoxProps) => {
+  // const { imageConfig, movieDatas, category } = props;
+  const categoryObj: { [key: string]: string } = {
     popular: '인기 작품들',
     now_playing: '현재 상영중',
     upcoming: '개봉 예정',
