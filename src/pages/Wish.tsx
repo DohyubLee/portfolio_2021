@@ -2,13 +2,17 @@ import React, { Fragment, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Wish.scss';
 import { isMobile } from 'react-device-detect';
+import { ImageConfig, LocalStorage } from '../types';
 
-const Wish = props => {
-  const { imageConfig } = props;
+type WishProps = {
+  imageConfig: ImageConfig;
+};
+
+const Wish = ({ imageConfig }: WishProps) => {
   const [list, setList] = useState([]);
 
   useEffect(() => {
-    let getList = JSON.parse(localStorage.getItem('my-list'));
+    let getList = JSON.parse(localStorage.getItem('my-list') || '');
     if (!!getList) {
       setList(getList);
     }
@@ -20,7 +24,7 @@ const Wish = props => {
         <Fragment>
           <h3>찜한 콘텐츠</h3>
           <ul>
-            {list.map(data => {
+            {list.map((data: LocalStorage['my_list']) => {
               return (
                 <li key={data.id}>
                   <Link to={`/detail?movie_id=${data.id}`} className="img-link">

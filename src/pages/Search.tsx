@@ -4,14 +4,17 @@ import './Search.scss';
 import { isMobile } from 'react-device-detect';
 import axios from 'axios';
 import { useMediaQuery } from 'react-responsive';
+import { ImageConfig, SearchData } from '../types';
 
-const Search = props => {
-  const { api_key, imageConfig } = props;
+type SearchProps = {
+  imageConfig: ImageConfig;
+  api_key: string;
+};
+
+const Search = ({ api_key, imageConfig }: SearchProps) => {
   let [searchParams] = useSearchParams();
   let keyword = searchParams.get('keyword');
-  const [list, setList] = useState({
-    results: [],
-  });
+  const [list, setList] = useState<SearchData | null>();
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 767px)' });
 
   useEffect(() => {
@@ -32,7 +35,7 @@ const Search = props => {
   return true ? (
     <div className={isMobile ? 'mob-search' : 'mob-search web-search'}>
       <h3>검색결과</h3>
-      {list.results.length > 0 ? (
+      {!!list ? (
         <ul>
           {list.results.map(data => {
             return (

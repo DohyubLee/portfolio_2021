@@ -3,16 +3,21 @@ import './Movie.scss';
 import { isMobile } from 'react-device-detect';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { Datas, ImageConfig } from '../types';
 
-const Movie = props => {
-  const { imageConfig, api_key, genres, category } = props;
-  const [movieDatas, setMovieDatas] = useState({
-    results: [],
-  });
+type MovieProps = {
+  imageConfig: ImageConfig;
+  api_key: string;
+  genres: { [key: string]: string };
+  category: string;
+};
+
+const Movie = ({ imageConfig, api_key, genres, category }: MovieProps) => {
+  const [movieDatas, setMovieDatas] = useState<Datas | null>();
   let fetching = false;
   // 맨처음 로드전 height가 정해지지 않아서 데이터 다 받고 진행시 사용을 위해
   let page = 1;
-  const categoryName = {
+  const categoryName: { [key: string]: string } = {
     popular: '인기 작품들',
     now_playing: '현재 상영중',
     upcoming: '개봉 예정',
@@ -45,7 +50,7 @@ const Movie = props => {
     }
   };
 
-  const loadData = async page => {
+  const loadData = async (page: number) => {
     await axios({
       method: 'get',
       baseURL: 'https://api.themoviedb.org',
@@ -61,7 +66,7 @@ const Movie = props => {
           return { ...fetchData, ...res.data };
         });
       } else {
-        setMovieDatas(fetchData => {
+        setMovieDatas((fetchData: any) => {
           return {
             ...fetchData,
             ...res.data,
@@ -79,41 +84,11 @@ const Movie = props => {
         <div className="mob-movie">
           <h3>{categoryName[category]}</h3>
           <ul>
-            {movieDatas.results.map(data => {
-              return (
-                <li key={data.id}>
-                  <Link to={`/detail?movie_id=${data.id}`} className="img-link">
-                    <img
-                      src={`${imageConfig.base_url}${imageConfig.backdrop_sizes[3]}${data.backdrop_path}`}
-                    />
-                  </Link>
-                  <div className="info">
-                    <div className="title">{data.title}</div>
-                    <div className="genre">
-                      <span className="genre-title">장르: </span>
-                      {data.genre_ids.map(id => {
-                        return (
-                          <span key={id} className="genre-name">
-                            {!!genres[id] ? genres[id] : '미확인'}
-                          </span>
-                        );
-                      })}
-                    </div>
-                  </div>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-      ) : (
-        <div className="web-movie">
-          <div className="contents-wrap">
-            <h3>{categoryName[category]}</h3>
-            <ul>
-              {movieDatas.results.map(data => {
+            {!!movieDatas &&
+              movieDatas.results.map(data => {
                 return (
                   <li key={data.id}>
-                    <Link to={`/detail?movie_id=${data.id}`} className="text-link">
+                    <Link to={`/detail?movie_id=${data.id}`} className="img-link">
                       <img
                         src={`${imageConfig.base_url}${imageConfig.backdrop_sizes[3]}${data.backdrop_path}`}
                       />
@@ -122,7 +97,7 @@ const Movie = props => {
                       <div className="title">{data.title}</div>
                       <div className="genre">
                         <span className="genre-title">장르: </span>
-                        {data.genre_ids.map(id => {
+                        {data.genre_ids.map((id: number) => {
                           return (
                             <span key={id} className="genre-name">
                               {!!genres[id] ? genres[id] : '미확인'}
@@ -134,6 +109,38 @@ const Movie = props => {
                   </li>
                 );
               })}
+          </ul>
+        </div>
+      ) : (
+        <div className="web-movie">
+          <div className="contents-wrap">
+            <h3>{categoryName[category]}</h3>
+            <ul>
+              {!!movieDatas &&
+                movieDatas.results.map(data => {
+                  return (
+                    <li key={data.id}>
+                      <Link to={`/detail?movie_id=${data.id}`} className="text-link">
+                        <img
+                          src={`${imageConfig.base_url}${imageConfig.backdrop_sizes[3]}${data.backdrop_path}`}
+                        />
+                      </Link>
+                      <div className="info">
+                        <div className="title">{data.title}</div>
+                        <div className="genre">
+                          <span className="genre-title">장르: </span>
+                          {data.genre_ids.map((id: number) => {
+                            return (
+                              <span key={id} className="genre-name">
+                                {!!genres[id] ? genres[id] : '미확인'}
+                              </span>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    </li>
+                  );
+                })}
             </ul>
           </div>
         </div>

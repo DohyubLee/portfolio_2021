@@ -4,23 +4,21 @@ import './Detail.scss';
 import { isMobile } from 'react-device-detect';
 import axios from 'axios';
 import { Skeleton } from '@mui/material';
+import { CreditsData, DetailData, ImageConfig, LocalStorage } from '../types';
 
-const Detail = props => {
-  const { api_key, imageConfig } = props;
+type DetailProps = {
+  imageConfig: ImageConfig;
+  api_key: string;
+};
+
+const Detail = ({ api_key, imageConfig }: DetailProps) => {
   let [searchParams] = useSearchParams();
   let movieId = searchParams.get('movie_id');
-  const [details, setDetails] = useState({
-    id: null,
-    title: null,
-  });
-  const [credits, setCredits] = useState({
-    id: null,
-    cast: [],
-    crew: [],
-  });
+  const [details, setDetails] = useState<DetailData>();
+  const [credits, setCredits] = useState<CreditsData>();
   const [isWish, setIsWish] = useState(false);
   const skelDefaultArr = [0, 1, 2, 3, 4, 5, 6, 7];
-  let getList = JSON.parse(localStorage.getItem('my-list'));
+  let getList = JSON.parse(localStorage.getItem('my-list') || '');
 
   useEffect(() => {
     axios({
@@ -46,20 +44,20 @@ const Detail = props => {
       setCredits(res.data);
     });
     if (!!getList) {
-      if (getList.filter(data => data.id == movieId).length > 0) {
+      if (getList.filter((data: LocalStorage['my_list']) => data.id == movieId).length > 0) {
         setIsWish(true);
       }
     }
   }, []);
 
-  const putWishList = data => {
-    let getList = JSON.parse(localStorage.getItem('my-list'));
+  const putWishList = (data: DetailData) => {
+    let getList = JSON.parse(localStorage.getItem('my-list') || '');
 
     if (!!getList) {
       // 1개이상 있을때
-      if (getList.filter(list => list.id == data.id).length > 0) {
+      if (getList.filter((list: LocalStorage['my_list']) => list.id == data.id).length > 0) {
         // 이미 담겨있을때
-        let index = getList.findIndex(list => list.id === data.id);
+        let index = getList.findIndex((list: LocalStorage['my_list']) => list.id === data.id);
         getList.splice(index, 1);
         setIsWish(false);
       } else {
@@ -90,7 +88,7 @@ const Detail = props => {
       {true ? (
         <div className={isMobile ? 'mob-detail' : 'mob-detail web-detail'}>
           <div className="backdrop-wrap">
-            {!!details.id && (
+            {!!details && (
               <Fragment>
                 <img
                   src={`${imageConfig.base_url}${imageConfig.backdrop_sizes[3]}${details.backdrop_path}`}
@@ -121,7 +119,7 @@ const Detail = props => {
           <div className="cast-wrap">
             <h3>주요 출연진</h3>
             <ul>
-              {credits.cast.length > 0
+              {!!credits
                 ? credits.cast.map(data => {
                     return (
                       <li key={data.id}>

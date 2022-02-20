@@ -1,18 +1,30 @@
-import React, { Fragment, useEffect, useRef, useState } from 'react';
+import React, {
+  ChangeEvent,
+  FormEvent,
+  Fragment,
+  MouseEvent,
+  RefObject,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import './Header.scss';
 import { useMediaQuery } from 'react-responsive';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 
-const Header = props => {
-  const { isMobile } = props;
+type HeaderProps = {
+  isMobile: boolean;
+};
+
+const Header = ({ isMobile }: HeaderProps) => {
   const [isShow, setIsShow] = useState(true);
   const [isDrop, setIsDrop] = useState(false);
   const [value, setValue] = useState('');
   let prevScrollpos = window.pageYOffset;
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 767px)' });
   const isSmallWitdh = useMediaQuery({ query: '(max-width: 575px)' });
-  const mobNavRef = useRef();
-  const navIcRef = useRef();
+  const mobNavRef = useRef<HTMLUListElement>(null);
+  const navIcRef = useRef<HTMLButtonElement>(null);
   let navigate = useNavigate();
 
   useEffect(() => {
@@ -52,14 +64,16 @@ const Header = props => {
     prevScrollpos = currentScrollPos;
   };
 
-  const closeMobNav = event => {
+  const closeMobNav = (event: any) => {
     // 해당 박스 존재유무 파악
     if (!!mobNavRef.current) {
       // 해당 박스 영역 외에서 클릭했을시
       if (!mobNavRef.current.contains(event.target)) {
-        // 아이콘 영역 외에서만 동작시키기위해
-        if (!navIcRef.current.contains(event.target)) {
-          setIsDrop(false);
+        if (!!navIcRef.current) {
+          // 아이콘 영역 외에서만 동작시키기위해
+          if (!navIcRef.current.contains(event.target)) {
+            setIsDrop(false);
+          }
         }
       }
     }
@@ -69,12 +83,12 @@ const Header = props => {
     setIsDrop(!isDrop);
   };
 
-  const handleSubmit = event => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     navigate(`/search?keyword=${value}`);
     event.preventDefault();
   };
 
-  const handleChange = event => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
   };
 
@@ -132,11 +146,17 @@ const Header = props => {
   );
 };
 
-const NavList = props => {
-  const { name, reference } = props;
+const NavList = ({
+  name,
+  reference,
+}: {
+  name: string | null;
+  reference: RefObject<HTMLUListElement> | null;
+}) => {
+  // const { name, reference } = props;
 
   return (
-    <ul className={name} ref={reference}>
+    <ul className={name ? name : ''} ref={reference}>
       <li>
         <NavLink to="/now-playing" className={({ isActive }) => (isActive ? 'active' : 'nav-tab')}>
           현재 상영 중

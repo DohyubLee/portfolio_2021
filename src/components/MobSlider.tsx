@@ -1,16 +1,21 @@
 import { Skeleton } from '@mui/material';
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
+import { Datas, ImageConfig } from '../types';
 import './MobSlider.scss';
 
-const MobSlider = props => {
-  const { imageConfig, movieDatas } = props;
+type MobSliderProps = {
+  imageConfig: ImageConfig;
+  movieDatas: Datas | null;
+};
+
+const MobSlider = ({ imageConfig, movieDatas }: MobSliderProps) => {
   const skelDefaultArr = [0, 1, 2, 3, 4, 5, 6, 7];
 
   return (
     <div className="mob-slider">
       <ul>
-        {movieDatas.results.length > 0 ? (
+        {!!movieDatas ? (
           <Fragment>
             {movieDatas.results.map(data => {
               return (
