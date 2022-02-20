@@ -1,13 +1,4 @@
-import React, {
-  ChangeEvent,
-  FormEvent,
-  Fragment,
-  MouseEvent,
-  RefObject,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import React, { Fragment, RefObject, useEffect, useRef, useState } from 'react';
 import './Header.scss';
 import { useMediaQuery } from 'react-responsive';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
@@ -64,14 +55,15 @@ const Header = ({ isMobile }: HeaderProps) => {
     prevScrollpos = currentScrollPos;
   };
 
-  const closeMobNav = (event: any) => {
+  // React에서 제공하는 MouseEvent와는 다른것!!!!
+  const closeMobNav = (event: MouseEvent): void => {
     // 해당 박스 존재유무 파악
     if (!!mobNavRef.current) {
       // 해당 박스 영역 외에서 클릭했을시
-      if (!mobNavRef.current.contains(event.target)) {
+      if (!mobNavRef.current.contains(event.target as HTMLElement)) {
         if (!!navIcRef.current) {
           // 아이콘 영역 외에서만 동작시키기위해
-          if (!navIcRef.current.contains(event.target)) {
+          if (!navIcRef.current.contains(event.target as HTMLElement)) {
             setIsDrop(false);
           }
         }
@@ -83,12 +75,12 @@ const Header = ({ isMobile }: HeaderProps) => {
     setIsDrop(!isDrop);
   };
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     navigate(`/search?keyword=${value}`);
     event.preventDefault();
   };
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
   };
 
