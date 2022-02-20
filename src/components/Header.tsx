@@ -68,13 +68,10 @@ const Header = ({ isMobile }: HeaderProps) => {
     // 해당 박스 존재유무 파악
     if (!!mobNavRef.current) {
       // 해당 박스 영역 외에서 클릭했을시
-      if (event.target instanceof HTMLUListElement && !mobNavRef.current.contains(event.target)) {
+      if (!mobNavRef.current.contains(event.target as HTMLElement)) {
         if (!!navIcRef.current) {
           // 아이콘 영역 외에서만 동작시키기위해
-          if (
-            event.target instanceof HTMLButtonElement &&
-            !navIcRef.current.contains(event.target)
-          ) {
+          if (!navIcRef.current.contains(event.target as HTMLElement)) {
             setIsDrop(false);
           }
         }
