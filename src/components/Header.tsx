@@ -64,14 +64,17 @@ const Header = ({ isMobile }: HeaderProps) => {
     prevScrollpos = currentScrollPos;
   };
 
-  const closeMobNav = (event: any) => {
+  const closeMobNav = (event: Event): void => {
     // 해당 박스 존재유무 파악
     if (!!mobNavRef.current) {
       // 해당 박스 영역 외에서 클릭했을시
-      if (!mobNavRef.current.contains(event.target)) {
+      if (event.target instanceof HTMLUListElement && !mobNavRef.current.contains(event.target)) {
         if (!!navIcRef.current) {
           // 아이콘 영역 외에서만 동작시키기위해
-          if (!navIcRef.current.contains(event.target)) {
+          if (
+            event.target instanceof HTMLButtonElement &&
+            !navIcRef.current.contains(event.target)
+          ) {
             setIsDrop(false);
           }
         }
